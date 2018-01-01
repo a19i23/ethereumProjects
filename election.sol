@@ -10,12 +10,16 @@ contract Election {
   struct Voter {
     bool voted;
     uint voteIndex;
+    uint weight;
   }
 
   address public owner;
+  string public name;
   mapping(address => Voter) public voters;
   Candidate[] public candidates;
   uint public auctionEnd;
+
+  event ElectionResult(string name, uint voteCount);
 
   function Election(string _name, uint durationMinutes, string candidate1, string candidate2){
     owner = msg.sender;
